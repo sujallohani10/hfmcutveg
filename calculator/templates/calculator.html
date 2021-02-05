@@ -16,18 +16,23 @@
                       </div>
                       <div class="alert alert-warning message-warning mt-2" role="alert" style="display: none">
                       </div>
+                      
+                      <div>
+                        <span class="badge badge-info">Carrot & Celery 350G</span>
+                      </div>
+                      <br>
                       <div class="form-row">
                             <div class="form-group col-5 col-sm-5 col-md-5">
-                              <input type="text" class="form-control name" name="name[]" placeholder="Name">
+                                <label for="email"><b>Total Unit</b></label>
                             </div>
                             <div class="form-group col-5 col-sm-5 col-md-5">
-                              <input type="text" class="form-control amount"  name="amount[]" placeholder="Amount">
+                              <input type="text" class="form-control" name="unit" placeholder="Unit">
                             </div>
                       </div>
                       
 
                   </div>
-                  <button type="button" class="btn btn-primary" id="calcButton">Calculate</button>
+                  <button type="button" class="btn btn-success btn-sm" id="calcButton">Calculate</button>
                 </form>
             </div>
 	    </div>
@@ -39,16 +44,6 @@
 {% block javascript %}
     <script>
         $(document).ready(function () {
-            //variables
-            let maxRows = 5;
-            let count = 3;
-        
-
-            //remove rows
-            $(document).on('click', '#removeUser', function () {
-                $(this).parent().parent('div').remove();
-                count--;
-            });
 
             //amount validation
             $(document).on('change', '.amount',function () {
