@@ -20,37 +20,27 @@ def validate_amount(request):
     return JsonResponse(data)
 
 
-def calculateGrocery(request):
-    # request should be ajax and method should be POST.
+def calculateCarrrotCelery(request):
+    # validating...i.e. request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
 
-        # Task to do
-        # GUI make similar to ATO tax calculator
-
         # data from ajax
-        nameList = request.POST.getlist('name[]')
-        amountList = request.POST.getlist('amount[]')
-        amountList = list(map(float, amountList))
+        unit = request.POST.get('unit')
+        print(unit)
 
-        # conversion of lists to dictionary
-        # using zip()
-        nameAmountDict = dict(zip(nameList, amountList))
-        print("Resultant dictionary is : " + str(nameAmountDict))
+        # carrot quantity in 350G: 190G
+        carrot = int(unit) * 190 / 1000 #Python follows PEMDAS (Parentheses Exponentiation Multiplication Division Addition Subtraction) for math calculation
+        carrot = round(carrot, 2) 
+        print(carrot)      
 
-        average = mean(amountList)
-        average = round(average, 2)
-        averageText = "<b>Note</b>: Each user subjected to pay: $"+str(average)
-        print("The average is ", average)
-        print(nameAmountDict)
+        # Celery quantity in 350G: 160G
+        celery = int(unit) * 160 / 1000 
+        celery = round(celery, 2)
+        print(celery) 
 
         responseList = []
-        for name, value in nameAmountDict.items():
-            remainder = round(value - average, 2)  # 50 is average value
-            if remainder == 0:
-                responseList.append("Neither pay nor receive: " + name)
-            elif remainder > 0:
-                responseList.append(name + " Receive: $" + str(abs(remainder)))
-            else:
-                responseList.append(name + " Pay: $" + str(abs(remainder)))
+        responseList.append("Carrot weight in Kg: " + str(carrot) + "\n<br>"+
+                            "Celery weight in Kg: " + str(celery)
+        );
 
-        return JsonResponse({"responseList": responseList, "averageText": averageText}, status=200)
+        return JsonResponse({"responseList": responseList}, status=200)

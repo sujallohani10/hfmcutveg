@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='calculator'),
-    url('post/ajax/calculateGrocery', views.calculateGrocery, name='calculateGrocery'),
+    url('post/ajax/calculateCarrrotCelery', views.calculateCarrrotCelery, name='calculateCarrrotCelery'),
     url('post/ajax/validate_amount', views.validate_amount, name='validate_amount'),
 ]

@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="col-md-12 col-lg-9">
-                <form data-url="{% url 'calculateGrocery' %}" id="formCalculation">
+                <form data-url="{% url 'calculateCarrrotCelery' %}" id="formCalculation">
                     {% csrf_token %}
 
                     <!-- Form Name -->
@@ -43,40 +43,12 @@
 
 {% block javascript %}
     <script>
-        $(document).ready(function () {
-
-            //amount validation
-            $(document).on('change', '.amount',function () {
-                  let amount = $(this).val();
-                  $.ajax({
-                      type: 'POST',
-                      url: '{% url "validate_amount" %}',
-                      data: {'amount': amount, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                      dataType: 'json',
-                      success: function (response) {
-                          if(response.type) {
-                              $(".message-warning").html(response.message).fadeIn().delay(3000).fadeOut();
-                              $(".message-warning").show();
-                          }
-                      }
-                  });
-            });
-
-        });
 
         //calculate data using ajax
         $("#calcButton").click(function () {
-          let form = $(this).closest("form");
-          // check if the input is valid using a 'valid' property
-           let validation = validate_empty();
-           console.log(validation);
-           if(!validation) {
-               $(".message-warning").html("All fileds are required!!").fadeIn().delay(3000).fadeOut();
-                $(".message-warning").show();
-                return false;
-           } else {
-               $(".message-warning").hide();
-           }
+            //variable declaration
+            let form = $(this).closest("form");
+           
             $.ajax({
                     type: 'POST',
                     url: form.attr("data-url"),
@@ -89,34 +61,12 @@
                         $.each(obj, function(key,value) {
                             newHTML.push('<span>' + value + '</span><br>' );
                         });
-                        newHTML.push('<span>' + response.averageText + '</span><br>');
 
                         $(".message").html(newHTML.join(""));
                         $(".message").show();
                 }
             });
         });
-
-        //validating empty values
-        function validate_empty() {
-            let nameArr = [];
-            let amountArr = [];
-            let validation = true;
-            $("input[name=\"name[]\"]").map(function() {
-                    nameArr.push(this.value);
-            });
-            $("input[name=\"amount[]\"]").map(function() {
-                    amountArr.push(this.value);
-            });
-
-            let nameArraySet = new Set(nameArr);
-            let amountArraySet = new Set(amountArr);
-            console.log(nameArraySet);
-            if(nameArraySet.has('') || amountArraySet.has('')) {
-                validation = false
-            }
-            return validation;
-        }
   </script>
 
 {% endblock %}
