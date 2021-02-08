@@ -8,6 +8,9 @@ from django.http import JsonResponse
 
 
 def index(request):
+    return render(request, 'home.html')
+
+def carrotAndCelery(request):
     return render(request, 'calculator.html')
 
 
