@@ -4,11 +4,11 @@
 
         <div class="row">
             <div class="col-md-12 col-lg-9">
-                <form data-url="{% url 'calculateCarrrotCelery' %}" id="formCalculation">
+                <form data-url="{% url urlName %}" id="formCalculation">
                     {% csrf_token %}
 
                     <!-- Form Name -->
-                    <legend><center><h2><b>Welcome to Calculator</b></h2></center></legend><br>
+                    <legend><center><h3><b>Welcome to Calculator</b></h3></center></legend><br>
 
                   <div id="container">
                       
@@ -18,7 +18,7 @@
                       </div>
                       
                       <div>
-                        <span class="badge badge-info">Carrot & Celery 350G</span>
+                        <span class="badge badge-info">{{ badge_name }}</span>
                       </div>
                       <br>
                       <div class="form-row">

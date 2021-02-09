@@ -11,16 +11,14 @@ def index(request):
     return render(request, 'home.html')
 
 def carrotAndCelery(request):
-    return render(request, 'calculator.html')
+    return render(request, 'calculator.html', {'urlName':'calculateCarrrotCelery','badge_name':'Carrot & Celery 350G (2080)'})
 
 
-def validate_amount(request):
-    amount = request.POST.get('amount')
-    data = {}
-    if not re.match(r'^[1-9]\d*(\.\d{1,2})?$', amount) or amount == '':
-        data["type"] = 'error'
-        data["message"] = 'Amount should be non-negative and upto two decimal point'
-    return JsonResponse(data)
+def carrotBattons(request):
+    return render(request, 'calculator.html', {'urlName':'calculateCarrotBattons','badge_name':'Carrot Battons 200G (2092)'})
+
+def carrotCurls(request):
+    return render(request, 'calculator.html', {'urlName':'calculateCarrotCurls','badge_name':'Carrot Curls 400G (9566)'})
 
 
 def calculateCarrrotCelery(request):
@@ -44,6 +42,45 @@ def calculateCarrrotCelery(request):
         responseList = []
         responseList.append("Carrot weight in Kg: " + str(carrot) + "\n<br>"+
                             "Celery weight in Kg: " + str(celery)
+        );
+
+        return JsonResponse({"responseList": responseList}, status=200)
+
+def calculateCarrotBattons(request):
+    # validating...i.e. request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+
+        # data from ajax
+        unit = request.POST.get('unit') #unit is the total order of item
+        print(unit)
+
+        # carrot quantity in 200G
+        carrot = int(unit) * 200 / 1000 #Python follows PEMDAS (Parentheses Exponentiation Multiplication Division Addition Subtraction) for math calculation
+        carrot = round(carrot, 2) 
+        print(carrot)
+
+        responseList = []
+        responseList.append("Carrot weight in Kg: " + str(carrot) + "\n<br>"
+        );
+
+        return JsonResponse({"responseList": responseList}, status=200)
+
+
+def calculateCarrotCurls(request):
+    # validating...i.e. request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+
+        # data from ajax
+        unit = request.POST.get('unit') #unit is the total order of item
+        print(unit)
+
+        # carrot quantity in 400G
+        carrot = int(unit) * 400 / 1000
+        carrot = round(carrot, 2) 
+        print(carrot)
+
+        responseList = []
+        responseList.append("Carrot weight in Kg: " + str(carrot) + "\n<br>"
         );
 
         return JsonResponse({"responseList": responseList}, status=200)
