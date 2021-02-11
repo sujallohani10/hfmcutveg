@@ -15,10 +15,34 @@ def carrotAndCelery(request):
 
 
 def carrotBattons(request):
-    return render(request, 'calculator.html', {'urlName':'calculateCarrotBattons','badge_name':'Carrot Battons 200G (2092)'})
+
+    url = 'calculateCommonMethod'
+    badge_name = 'Carrot Battons 200G (2092)'
+    weight = 200
+    displayMessage = "Carrot weight in Kg: "
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
 
 def carrotCurls(request):
-    return render(request, 'calculator.html', {'urlName':'calculateCarrotCurls','badge_name':'Carrot Curls 400G (9566)'})
+
+    url = 'calculateCommonMethod'
+    badge_name = 'Carrot Curls 400G (9566)'
+    weight = 400
+    displayMessage = "Carrot weight in Kg: "
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+
+def dicedPumpkin(request):
+
+    url = 'calculateCommonMethod'
+    badge_name = 'Diced Pumpkin 500G (2046)'
+    weight = 500
+    displayMessage = "Pumpkin weight in Kg: "
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
 
 
 def calculateCarrrotCelery(request):
@@ -81,6 +105,27 @@ def calculateCarrotCurls(request):
 
         responseList = []
         responseList.append("Carrot weight in Kg: " + str(carrot) + "\n<br>"
+        );
+
+        return JsonResponse({"responseList": responseList}, status=200)
+
+def calculateCommonMethod(request):
+    # validating...i.e. request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+
+        # data from ajax
+        unit = request.POST.get('unit') #unit is the total order of item
+        weight = request.POST.get('weight')
+        displayMessage = request.POST.get('message')
+        print(unit)
+
+        # calculation
+        item = int(unit) * int(weight) / 1000 #converting to kilo gram
+        item = round(item, 2) 
+        print(item)
+
+        responseList = []
+        responseList.append(displayMessage + str(item) + "\n<br>"
         );
 
         return JsonResponse({"responseList": responseList}, status=200)

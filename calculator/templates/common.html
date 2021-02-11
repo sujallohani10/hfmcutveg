@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-md-12 col-lg-9">
+                <form data-url="{% url urlName %}" id="formCalculation">
+                    {% csrf_token %}
+
+                    <!-- Form Name -->
+                    <legend><center><h3><b>Welcome to Calculator</b></h3></center></legend><br>
+
+                  <div id="container">
+                      
+                      <div class="alert alert-success message mt-2" role="alert" style="display: none">
+                      </div>
+                      <div class="alert alert-warning message-warning mt-2" role="alert" style="display: none">
+                      </div>
+                      
+                      <div>
+                        <span class="badge badge-info">{{ badge_name }}</span>
+                      </div>
+                      <br>
+                      <div class="form-row">
+                            <div class="form-group col-5 col-sm-5 col-md-5">
+                                <label for="email"><b>Total Unit</b></label>
+                            </div>
+                            <div class="form-group col-5 col-sm-5 col-md-5">
+                              <input type="text" class="form-control" name="unit" placeholder="Unit">
+                              <input type="hidden" name="weight" value="{{weight}}">
+                              <input type="hidden" name="message" value="{{message}}">
+                            </div>
+                      </div>
+                      
+
+                  </div>
+                  <button type="button" class="btn btn-success btn-sm" id="calcButton">Calculate</button>
+                </form>
+            </div>
+	    </div>
+
+    </div>
+<!-- End Page Content -->
+{% endblock %}
+
+{% block javascript %}
+    <script>
+
+        //calculate data using ajax
+        $("#calcButton").click(function () {
+            //variable declaration
+            let form = $(this).closest("form");
+           
+            $.ajax({
+                    type: 'POST',
+                    url: form.attr("data-url"),
+                    data: form.serialize(),
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response);
+                        const obj = response['responseList'];
+                        const newHTML = [];
+                        $.each(obj, function(key,value) {
+                            newHTML.push('<span>' + value + '</span><br>' );
+                        });
+
+                        $(".message").html(newHTML.join(""));
+                        $(".message").show();
+                }
+            });
+        });
+  </script>
+
+{% endblock %}
