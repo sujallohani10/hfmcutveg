@@ -26,7 +26,7 @@
                                 <label for="email"><b>Total Unit</b></label>
                             </div>
                             <div class="form-group col-5 col-sm-5 col-md-5">
-                              <input type="text" class="form-control" name="unit" placeholder="Unit">
+                              <input type="text" class="form-control unit" name="unit" placeholder="Unit">
                               <input type="hidden" name="itemStr" value="{{itemStr}}">
                             </div>
                       </div>
@@ -44,6 +44,26 @@
 
 {% block javascript %}
     <script>
+        $(document).ready(function () {
+
+            //total unit validation
+            $(document).on('change', '.unit',function () {
+                  let unit = $(this).val();
+                  $.ajax({
+                      type: 'POST',
+                      url: '{% url "validate_unit" %}',
+                      data: {'unit': unit, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                      dataType: 'json',
+                      success: function (response) {
+                          if(response.type) {
+                              $(".message-warning").html(response.message).fadeIn().delay(3000).fadeOut();
+                              $(".message-warning").show();
+                          }
+                      }
+                  });
+            });
+
+        });
 
         //calculate data using ajax
         $("#calcButton").click(function () {

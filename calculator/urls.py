@@ -20,4 +20,5 @@ urlpatterns = [
     path('entertainmentpack', views.entertainmentPack, name='entertainmentpack'),
     url('post/ajax/calculateCommonMethod', views.calculateCommonMethod, name='calculateCommonMethod'),
     url('post/ajax/calculateMultipleItems', views.calculateMultipleItems, name='calculateMultipleItems'),
+    url('post/ajax/validate_unit', views.validate_unit, name='validate_unit'),
 ]

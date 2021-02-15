@@ -171,3 +171,11 @@ def calculateCommonMethod(request):
         );
 
         return JsonResponse({"responseList": responseList}, status=200)
+
+def validate_unit(request):
+    unit = request.POST.get('unit')
+    data = {}
+    if not re.match(r'^([\s\d]+)$', unit) or unit == '':
+        data["type"] = 'error'
+        data["message"] = 'Unit should be positive number only'
+    return JsonResponse(data)
