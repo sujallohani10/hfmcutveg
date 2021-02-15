@@ -14,9 +14,6 @@ urlpatterns = [
     path('cauliflowerrice', views.cauliflowerRice, name='cauliflowerrice'),
     path('shreddedkale', views.shreddedKale, name='shreddedkale'),
     path('mixcapsicum', views.mixCapsicum, name='mixcapsicum'),
-    url('post/ajax/calculateCarrrotCelery', views.calculateMultipleItems, name='calculateCarrrotCelery'),
-    url('post/ajax/calculateCarrotBattons', views.calculateCarrotBattons, name='calculateCarrotBattons'),
-    url('post/ajax/calculateCarrotCurls', views.calculateCarrotBattons, name='calculateCarrotCurls'),
     url('post/ajax/calculateCommonMethod', views.calculateCommonMethod, name='calculateCommonMethod'),
     url('post/ajax/calculateMultipleItems', views.calculateMultipleItems, name='calculateMultipleItems'),
 ]
