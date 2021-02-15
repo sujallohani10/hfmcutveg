@@ -63,7 +63,7 @@ def beetroot(request):
     beetrootStr = '{"Beetroot":405}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': zucchiniStr})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': beetrootStr})
 
 def cauliflowerRice(request):
 
@@ -91,6 +91,42 @@ def mixCapsicum(request):
     template_view =  'common.html'
 
     return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr':capsicumStr})
+
+def stirFry(request):
+
+    url = 'calculateMultipleItems'
+    badge_name = 'Stir Fry Veg Broc/Caul 450G (20801)'
+    stirfryStr = '{"Cauliflower":100, "Brocoli":65, "Carrot":67, "Snow Peas":50, "Mushroom":50, "Red Capsicum":16, "Yellow Capsicum":40}'
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr':stirfryStr})
+
+def asianMix(request):
+
+    url = 'calculateMultipleItems'
+    badge_name = 'Asian Mix 400G (2104)'
+    asianStr = '{"Coleslaw":150, "Snow Peas":50, "Mushroom":28, "Red Capsicum":50}'
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr':asianStr})
+
+def coleslaw(request):
+
+    url = 'calculateMultipleItems'
+    badge_name = 'Coleslaw W/SP Onion 240G (2097)'
+    coleslawStr = '{"Coleslaw":245}'
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr':coleslawStr})
+
+def entertainmentPack(request):
+
+    url = 'calculateMultipleItems'
+    badge_name = 'Entertainment Pack 280G (2100)'
+    entertainmentStr = '{"Carrot":100, "Celery":100}'
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr':entertainmentStr})
 
 def calculateMultipleItems(request):
     # validating...i.e. request should be ajax and method should be POST.

@@ -14,6 +14,10 @@ urlpatterns = [
     path('cauliflowerrice', views.cauliflowerRice, name='cauliflowerrice'),
     path('shreddedkale', views.shreddedKale, name='shreddedkale'),
     path('mixcapsicum', views.mixCapsicum, name='mixcapsicum'),
+    path('stirfry', views.stirFry, name='stirfry'),
+    path('coleslaw', views.coleslaw, name='coleslaw'),
+    path('asianmix', views.asianMix, name='asianmix'),
+    path('entertainmentpack', views.entertainmentPack, name='entertainmentpack'),
     url('post/ajax/calculateCommonMethod', views.calculateCommonMethod, name='calculateCommonMethod'),
     url('post/ajax/calculateMultipleItems', views.calculateMultipleItems, name='calculateMultipleItems'),
 ]
