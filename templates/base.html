@@ -1,4 +1,5 @@
 {% load static %}
+{% static "images" as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,81 +12,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     {% block style %}
+        <link rel="stylesheet" type="text/css" href="{% static "/css/style.css" %}" />
         <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
     {% endblock %}
-
-    <style>
-        .block {
-            height: 80px;
-            color: #212529;
-            background: rgba(86,61,124,.15);
-            margin-top: 10px;
-        }
-
-        .context {
-            overflow: hidden;
-            position: relative;
-            margin-top: 0.5em;
-        }
-        .pink {
-            background: #ed145b;
-          
-        }
-        .green {
-            background: #00a651;
-        }
-        .darkblue {
-            background: #0054a6;
-        }
-        .gold {
-            background: #d4ab07;
-        }
-        .overlay {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 100%;
-          width: 100%;
-          opacity: 0.9;
-          transition: .3s ease;
-
-        }
-        .context:hover .overlay {
-          opacity: 1;
-          
-        }
-        [onClick]{
-          cursor:pointer;
-        }
-        .text {
-            display: table;
-            width: 100%;
-            height: 100%;
-            font-size:1.2rem;
-        }
-        .text > div{
-          display:table-cell;
-          vertical-align:middle;
-          }
-          @media (max-width: 575.98px) {
-            img{
-              width:100%!important;
-            }
-            .text{
-              font-size:0.8rem;
-            }
-            .context {
-                margin-top: 0.5em;
-            }
-          }
-    </style>
 </head>
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-          <a class="navbar-brand" href="/"><b>Cut Veg Section</b></a>
+          <a class="navbar-brand" href="/"><b>Cut Veg Section Calculator</b></a>
 {#          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
 {#            <span class="navbar-toggler-icon"></span>#}
 {#          </button>#}

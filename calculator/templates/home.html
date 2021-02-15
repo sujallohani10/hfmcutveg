@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% static "images" as baseUrl %}
+
 {% block content %}
 
   <div class="row">
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='carrotandcelery'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="Background" class="img-fluid mx-auto d-block">
             <div class="overlay green">
                 <div class="text text-white text-center">
                     <div>
@@ -18,7 +21,7 @@
     </div>
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='carrotbattons'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="overlay darkblue  ">
                 <div class="text text-white text-center">
                     <div>
@@ -31,7 +34,7 @@
     </div>
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='carrotcurls'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="overlay gold">
                     <div class="text text-white text-center">
                         <div>
@@ -44,7 +47,7 @@
     </div>
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='mixcapsicum'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="pink overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -58,7 +61,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='zucchini'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="green overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -72,7 +75,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='dicedpumpkin'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="darkblue overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -86,7 +89,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='cauliflowerrice'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="gold overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -100,7 +103,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='coleslaw'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="pink overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -114,7 +117,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='shreddedkale'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="green overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -128,7 +131,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='stirfry'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="darkblue overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -142,7 +145,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='beetroot'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="gold overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -156,7 +159,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='asianmix'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="pink overlay">
                 <div class="text text-white text-center">
                     <div>
@@ -170,7 +173,7 @@
 
     <div class="col-4 col-md-3 col-sm-6">
         <div class="context" onclick="location.href='entertainmentpack'">
-            <img src="https://raw.githubusercontent.com/solodev/sectional-boxes/master/solodev-logo.jpg" alt="" class="img-fluid mx-auto d-block">
+            <img src="{% static 'images/background.jpg'%}" alt="" class="img-fluid mx-auto d-block">
             <div class="green overlay">
                 <div class="text text-white text-center">
                     <div>
