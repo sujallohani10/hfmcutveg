@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('carrotandcelery', views.carrotAndCelery, name='carrotandcelery'),
-    path('carrotbattons', views.carrotBattons, name='carrotandcelery'),
+    path('carrotbattons', views.carrotBattons, name='carrotbattons'),
     path('carrotcurls', views.carrotCurls, name='carrotcurls'),
     path('dicedpumpkin', views.dicedPumpkin, name='dicedpumpkin'),
     path('zucchini', views.zucchini, name='zucchini'),
@@ -14,8 +14,9 @@ urlpatterns = [
     path('cauliflowerrice', views.cauliflowerRice, name='cauliflowerrice'),
     path('shreddedkale', views.shreddedKale, name='shreddedkale'),
     path('mixcapsicum', views.mixCapsicum, name='mixcapsicum'),
-    url('post/ajax/calculateCarrrotCelery', views.calculateCarrrotCelery, name='calculateCarrrotCelery'),
+    url('post/ajax/calculateCarrrotCelery', views.calculateMultipleItems, name='calculateCarrrotCelery'),
     url('post/ajax/calculateCarrotBattons', views.calculateCarrotBattons, name='calculateCarrotBattons'),
     url('post/ajax/calculateCarrotCurls', views.calculateCarrotBattons, name='calculateCarrotCurls'),
     url('post/ajax/calculateCommonMethod', views.calculateCommonMethod, name='calculateCommonMethod'),
+    url('post/ajax/calculateMultipleItems', views.calculateMultipleItems, name='calculateMultipleItems'),
 ]

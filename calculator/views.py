@@ -5,93 +5,115 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from statistics import mean
 from django.http import JsonResponse
+import json
 
 
 def index(request):
     return render(request, 'home.html')
 
 def carrotAndCelery(request):
-    return render(request, 'calculator.html', {'urlName':'calculateCarrrotCelery','badge_name':'Carrot & Celery 350G (2080)'})
+
+    url = 'calculateMultipleItems'
+    badge_name = 'Carrot & Celery 350G (2080)'
+    carrotceleryStr = '{"Carrot":190, "Celery":160}' 
+    template_view =  'common.html'
+
+    return render(request, template_view, {'urlName': url, 'badge_name': badge_name, 'itemStr': carrotceleryStr})
 
 def carrotBattons(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Carrot Battons 200G (2092)'
-    weight = 205
-    displayMessage = "Carrot weight in Kg: "
+    carrotStr = '{"Carrot":205}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': carrotStr})
 
 def carrotCurls(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Carrot Curls 400G (9566)'
-    weight = 405
-    displayMessage = "Carrot weight in Kg: "
+    curlsStr = '{"Carrot":405}' # The weight should be retrieved from Constant file for no need to change code
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': curlsStr})
 
 def dicedPumpkin(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Diced Pumpkin 500G (2046)'
-    weight = 505
-    displayMessage = "Pumpkin weight in Kg: "
+    pumpkinStr = '{"Pumpkin":505}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': pumpkinStr})
 
 def zucchini(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Zucchini Zoodles 400G (8968)'
-    weight = 405
-    displayMessage = "Zucchini weight in Kg: "
+    zucchiniStr = '{"Zucchini":405}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': zucchiniStr})
 
 def beetroot(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Beetroot Noodles 400G (4010)'
-    weight = 405
-    displayMessage = "Beetroot weight in Kg: "
+    beetrootStr = '{"Beetroot":405}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': zucchiniStr})
 
 def cauliflowerRice(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Cauliflower Rice 350G (7095)'
-    weight = 355
-    displayMessage = "Cauliflower weight in Kg: "
+    cauliflowerStr = '{"Cauliflower":355}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': cauliflowerStr})
 
 def shreddedKale(request):
 
-    url = 'calculateCommonMethod'
+    url = 'calculateMultipleItems'
     badge_name = 'Shredded Kale 150G (2098)'
-    weight = 155
-    displayMessage = "Kale weight in Kg: "
+    kaleStr = '{"Kale":155}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr': kaleStr})
 
 def mixCapsicum(request):
 
-    url = 'calculateCommonMethod'
-    badge_name = 'Mix Capsicum 300G (2083)'
-    weight = 100
-    displayMessage = "Green, Yellow & Red Capsicum each weight in Kg: "
+    url = 'calculateMultipleItems'
+    badge_name = 'Mix Capsicum Trio 300G (2083)'
+    capsicumStr = '{"Green Capsicum":100, "Yellow Capsicum":100, "Red Capsicum":100}'
     template_view =  'common.html'
 
-    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'weight': weight, 'message':displayMessage})
+    return render(request, template_view, {'urlName':url, 'badge_name':badge_name, 'itemStr':capsicumStr})
+
+def calculateMultipleItems(request):
+    # validating...i.e. request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+
+         # data from ajax
+        unit = request.POST.get('unit') #unit is the total order of item
+        itemStr = request.POST.get('itemStr')
+        item_dict = json.loads(itemStr)
+        print(type(item_dict))
+        print(item_dict)
+
+        displayMessage = ""
+
+        for item, itemNetWeight in item_dict.items():
+            itemWeight = int(unit) * int(itemNetWeight) / 1000 #converting to kilo gram
+
+            displayMessage += str(item) + " weight in KG: " + str(itemWeight) + "\n<br>"
+
+        responseList = []
+        responseList.append(displayMessage);
+
+        return JsonResponse({"responseList": responseList}, status=200)
 
 def calculateCarrrotCelery(request):
     # validating...i.e. request should be ajax and method should be POST.
@@ -136,7 +158,6 @@ def calculateCarrotBattons(request):
         );
 
         return JsonResponse({"responseList": responseList}, status=200)
-
 
 def calculateCarrotCurls(request):
     # validating...i.e. request should be ajax and method should be POST.
