@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't6)f*m^86s6#q8ew58#19=()#22v9$ly11q2ysi6rjj5d&th*_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['cutveg.herokuapp.com', '127.0.0.10', '192.168.0.10']
 
