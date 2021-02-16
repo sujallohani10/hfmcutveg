@@ -63,4 +63,7 @@
         margin-top: 0.5em;
         margin-right: -0.1em;
     }
+    p {
+      margin-top: 5px
+    }
   }
